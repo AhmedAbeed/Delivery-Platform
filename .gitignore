@@ -1,0 +1,32 @@
+# Flutter/Dart
+**/build/
+**/.dart_tool/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/pubspec.lock
+
+# IDE
+**/.idea/
+**/.vscode/
+**/*.iml
+
+# macOS
+**/.DS_Store
+**/Thumbs.db
+
+# Firebase
+**/.firebase/
+**/.firebaserc
+
+# Netlify
+**/.netlify/
+
+# Miscellaneous
+**/*.log
+**/*.pyc
+**/*.swp
+**/*.swo
+**/*~
