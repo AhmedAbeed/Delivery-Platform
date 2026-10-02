@@ -1,75 +1,79 @@
-# 🍣 WeFlutter Project - Sushi Ordering System & Admin Dashboard
+# Food Ordering & Delivery Platform (WeFlutter)
 
-Welcome to the **WeFlutter Project**, a comprehensive, full-stack food ordering solution built with **Flutter** and **Firebase**. This repository contains a fully-featured Customer and Driver mobile application (`sushi`), along with a powerful Web Admin Dashboard (`dashboard`).
+A comprehensive, full-stack food ordering solution built with **Flutter** and **Firebase**. Developed as the final graduation project for the **WE Information Technology Internship Program**.
+
+This repository contains a full-featured Customer and Driver mobile application (`sushi`), along with a dedicated Web Admin Dashboard (`dashboard`).
 
 ![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)
 ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
 ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)
 
 ---
 
-## 📱 Project Structure
+## Project Structure
 
-This repository is a monorepo containing two main projects:
+This monorepo contains two primary components:
 
-1. **`sushi/` (Mobile App)**: The main application for both Customers and Delivery Drivers.
-2. **`dashboard/` (Web App)**: The Admin panel used by restaurant managers to control the entire system.
-
----
-
-## ✨ Features
-
-### 🛒 Customer App (`sushi`)
-- **Authentication**: Email/Password, Google, and Facebook Sign-In, plus Biometric Auth.
-- **Menu & Ordering**: Browse restaurants, categories, and items. Add to cart and place orders.
-- **Favorites**: Save favorite meals for quick access.
-- **Real-time Tracking**: Live order status updates and tracking using Google Maps.
-- **Localization & Theming**: Supports English 🇬🇧 & Arabic 🇪🇬, and Light/Dark modes 🌓.
-
-### 🛵 Driver App (`sushi`)
-- **Driver Portal**: Dedicated UI for drivers to accept and manage incoming delivery requests.
-- **Location Tracking**: Uses Geolocator and Google Maps to find customers.
-- **Finances**: Track earnings and completed orders.
-
-### 💻 Admin Dashboard (`dashboard`)
-- **Analytics Overview**: View sales, revenue, and order statistics with beautiful charts (`fl_chart`).
-- **Menu Management**: Add, edit, or delete restaurants, branches, categories, and items.
-- **User & Driver Management**: Manage customer accounts and approve/track delivery drivers.
-- **Offers**: Create and manage promotional banners and discounts.
+1. **`sushi/` (Mobile App)**: The cross-platform mobile client for both Customers and Delivery Drivers.
+2. **`dashboard/` (Web App)**: The responsive Web Admin panel for restaurant managers to oversee menu, orders, and logistics.
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## Features
+
+### Customer Application
+- **Multi-Method Authentication**: Email/Password, Google, Facebook, and Biometric authentication.
+- **Menu & Ordering**: Dynamic browsing of restaurants, categories, and items with cart and checkout workflows.
+- **Favorites**: Local and cloud synchronization of favorite dishes.
+- **Real-Time Tracking**: Live delivery status updates and location tracking via Google Maps.
+- **Localization & Theming**: Full Arabic (RTL) & English (LTR) localization with Light/Dark mode support.
+
+### Driver Application
+- **Driver Portal**: Dedicated interface for drivers to receive, accept, and manage delivery orders.
+- **GPS Navigation**: Live routing and location tracking powered by `geolocator` and Google Maps.
+- **Earnings & History**: Real-time tracking of completed deliveries and operational earnings.
+
+### Admin Dashboard (Web)
+- **Analytics Overview**: Visual reporting of sales, orders, and revenue trends with `fl_chart`.
+- **Catalog Management**: Full CRUD operations for restaurants, branches, categories, and items.
+- **Fleet & User Management**: Driver onboarding, status verification, and customer management.
+- **Promotions**: Creation and distribution of promotional banners and discount codes.
+
+---
+
+## Tech Stack & Architecture
 
 ### Frontend (Flutter)
-- **State Management**: BLoC / Cubit (`flutter_bloc`) for predictable state transitions.
-- **Routing**: Standard Flutter Navigator.
-- **Maps**: `google_maps_flutter`, `geolocator`, `geocoding`.
-- **UI/UX**: Custom Material 3 themes, `cupertino_icons`, `cached_network_image`.
+- **State Management**: BLoC / Cubit (`flutter_bloc`) for predictable, reactive state transitions across 20+ application states.
+- **Navigation**: Clean Flutter Navigator routing.
+- **Maps & Geolocation**: `google_maps_flutter`, `geolocator`, `geocoding`.
+- **UI/UX**: Custom Material 3 design system, responsive layouts, `cached_network_image`.
 
 ### Backend (Firebase)
-- **Authentication**: `firebase_auth` (Email, Google, Facebook).
-- **Database**: `cloud_firestore` (NoSQL database for users, orders, items, etc.).
-- **Storage**: `firebase_storage` (For profile pictures, food images, and banners).
+- **Authentication**: `firebase_auth` (Email, Social, Biometrics).
+- **Database**: Cloud Firestore (real-time collections for users, orders, inventory, notifications).
+- **Storage**: Cloud Storage for secure asset and media uploads.
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- [Flutter SDK](https://docs.flutter.dev/get-started/install) (^3.10.0 or higher)
+- Flutter SDK (^3.10.0 or higher)
+- Dart SDK
 - Android Studio / VS Code
-- A Firebase Project linked to both apps.
+- Configured Firebase project
 
-### 1️⃣ Setup the Mobile App (`sushi`)
+### 1. Mobile App Setup (`sushi`)
 ```bash
 cd sushi
 flutter pub get
 flutter run
 ```
-*Note: Make sure to configure your own `google-services.json` (Android) and `GoogleService-Info.plist` (iOS).*
+*Note: Add your own `google-services.json` (Android) and `GoogleService-Info.plist` (iOS).*
 
-### 2️⃣ Setup the Admin Dashboard (`dashboard`)
+### 2. Admin Dashboard Setup (`dashboard`)
 ```bash
 cd dashboard
 flutter pub get
@@ -78,19 +82,17 @@ flutter run -d chrome
 
 ---
 
-## 📂 Architecture overview (BLoC)
+## State Management Architecture (BLoC)
 
-The mobile app follows a clean, feature-first folder structure using Cubits:
-- `auth_cubit`: Manages user sessions and login states.
-- `cart_cubit`: Handles cart operations (add/remove items, calculate totals).
-- `menu_cubit`: Fetches and caches categories and food items from Firestore.
-- `orders_cubit`: Listens to real-time order updates.
-- `settings_cubit`: Manages Theme (Dark/Light) and Language (En/Ar) preferences via `shared_preferences`.
+The mobile application utilizes a feature-first architecture driven by modular Cubits:
+- `auth_cubit`: Manages user authentication, profile data, and session states.
+- `cart_cubit`: Handles cart management, discount calculations, and checkout.
+- `menu_cubit`: Real-time caching and fetching of restaurant items and categories.
+- `orders_cubit`: Stream-based listening to live order status transitions.
+- `settings_cubit`: Persistent theme and language preferences via `shared_preferences`.
 
 ---
 
-## 🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/AhmedAbeed/WeFlutter-Project/issues).
+## License
 
-## 📝 License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
