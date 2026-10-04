@@ -12,6 +12,18 @@ This repository contains a full-featured Customer and Driver mobile application 
 
 ---
 
+## App Showcase
+
+<div align="center">
+  <img src="docs/assets/app_showcase.png" alt="Food Ordering & Delivery Platform Mobile Showcase" width="100%" />
+</div>
+
+<p align="center">
+  <sub>End-to-end mobile user journey featuring Role Selection, Interactive Menu, Real-Time Cart Calculation, Live GPS Order Tracking, Promotional Offers, and Driver Dispatch Dashboard.</sub>
+</p>
+
+---
+
 ## System Architecture
 
 The platform operates as a unified multi-role ecosystem where Customer, Driver, and Admin applications synchronize in real time through a consolidated Firebase backend.
